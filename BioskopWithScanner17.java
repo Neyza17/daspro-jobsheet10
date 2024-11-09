@@ -9,23 +9,41 @@ public class BioskopWithScanner17 {
         String[][] penonton = new String[4][2];
 
         while (true) {
-            System.out.print("Masukkan nama : ");
-            nama = sc.nextLine();
-            System.out.print("Masukkan baris : ");
-            baris = sc.nextInt();
-            System.out.print("Masukkan kolom : ");
-            kolom = sc.nextInt();
+            System.out.println("=== Menu Bioskop ===");
+            System.out.println("1. Input data penonton");
+            System.out.println("2. Tampilkan daftar penonton");
+            System.out.println("3. Exit");
+            System.out.print("Pilih menu (1-3): ");
+            int pilihan = sc.nextInt();
             sc.nextLine();
 
-            penonton[baris-1][kolom-1] = nama;
+            switch (pilihan) {
+                case 1:
+                    for (int i = 0; i < penonton.length; i++) {
+                        for (int j = 0; j < penonton[i].length; j++) {
+                            System.out.printf("Masukkan nama penonton di baris %d, kolom %d: ", i, j);
+                            penonton[i][j] = sc.nextLine();
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Daftar penontoon: ");
+                    for (int i = 0; i < penonton.length; i++) {
+                        for (int j = 0; j < penonton[i].length; j++) {
+                            if (penonton[i][j] != null) {
+                                System.out.println("Baris " + (i + 1) + ", kolom " + (j + 1) + ": " + penonton[i][j]);
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Terima kasih! Program selesai.");
+                    sc.close();
+                    return;
 
-            System.out.print("Input penonton lainnya? (y/n) : ");
-            next = sc.nextLine();
-
-            if (next.equalsIgnoreCase("n")) {
-                break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silahkan pilih lagi");
             }
         }
     }
-    
 }
